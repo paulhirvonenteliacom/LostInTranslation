@@ -1,0 +1,80 @@
+﻿@model Viskleken.Viewmodels.LanguageSelectorVM
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="row">
+        <p class="col col-md-2"></p>
+        <p class="page-header col col-md-5">@Model.Heading</p>
+    </div>
+
+    <div class="row">
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-md-6">
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @type = "email" } })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Phrase, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-md-6">
+                    @Html.EditorFor(model => model.Phrase, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Phrase, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Language, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col col-md-6">
+                    @Html.DropDownListFor(model => model.SelectedLanguageId, new SelectList(@Model.Language, "Value", "Text", Model.SelectedLanguageId), "Inget valt", htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Language, null, new { @class = "text-danger" })
+                </div>
+                @*<div class="col col-md-offset-9 col-lg-1">
+                    @if (Model.StageInProcess == 2)
+                {
+                        @Html.ActionLink("Nollställ", "SelectLanguage")
+                    }
+                </div>*@
+            </div>
+            @if (Model.StageInProcess == 2)
+                {
+                <div class="row">
+                    <div class="col col-md-offset-3 col-md-6 reset">
+                        <br/>
+                        @Html.ActionLink("Nollställ", "SelectLanguage")
+                    </div>
+                    <p class="col col-md-offset-2 col-md-9" id="start-message">@Model.StartMessage</p>
+                </div>
+            }
+            else
+            {
+                <div class="row">
+
+                    <div class="form-group">
+                        <div class="col col-md-offset-3 col-md-6">
+                            <input type="submit" value="Viska!" class="btn btn-default" />
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        @*<div class="col col-md-offset-10 col-lg-1">
+            @if (Model.StageInProcess == 2)
+                {
+                        @Html.ActionLink("Nollställ", "SelectLanguage")
+            }
+        </div>*@
+    </div>
+
+}
+<script>
+    $(document).ready(function () {
+        $("#start-message").fadeIn(5000);
+        $("#start-message").delay(2000).fadeOut(5000).preventDefault();
+    });
+</script>
