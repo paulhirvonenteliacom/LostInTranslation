@@ -6,14 +6,14 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using Viskleken.Models;
-using Viskleken.Viewmodels;
+using LostInTranslation.Models;
+using LostInTranslation.Viewmodels;
 
-namespace Viskleken.Controllers
+namespace LostInTranslation.Controllers
 {
     public class LanguagesController : Controller
     {
-        private VisklekenContext db = new VisklekenContext();
+        private LostInTranslationContext db = new LostInTranslationContext();
 
         // GET: Languages
         public ActionResult Index()
@@ -50,7 +50,7 @@ namespace Viskleken.Controllers
             });
             languageSelectorVM.Language = new SelectList(languages, "Value", "Text");
 
-            languageSelectorVM.Heading = "Viskleken";
+            languageSelectorVM.Heading = "Lost in Translation";
             languageSelectorVM.StageInProcess = 1;
 
             return View(languageSelectorVM);
@@ -74,16 +74,20 @@ namespace Viskleken.Controllers
             });
             languageSelectorVM.Language = new SelectList(languages, "Value", "Text");
             languageSelectorVM.SelectedLanguageId = preLanguageSelectorVM.SelectedLanguageId;
-            languageSelectorVM.Heading = "Viskleken";
+            languageSelectorVM.Heading = "Lost in Translation";
 
             if (preLanguageSelectorVM.SelectedLanguageId == null)
             {
-                ModelState.AddModelError("Language", "Fältet Språk krävs.");
+                ModelState.AddModelError("Language", "The field Language is required.");
             }
 
             if (preLanguageSelectorVM.Phrase != null && preLanguageSelectorVM.SelectedLanguageId != null && ModelState.IsValid)
             {   
                 languageSelectorVM.StageInProcess = 2;
+
+                string builder = "";
+
+                System.IO.File.WriteAllText("C:\\Users\\paulh\\OneDrive\\Documents\\Bitoreq AB\\APL\\LostInTranslation\\File.txt", builder);
 
                 return View(languageSelectorVM);
             }

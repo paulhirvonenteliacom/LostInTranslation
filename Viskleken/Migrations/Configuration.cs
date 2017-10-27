@@ -1,48 +1,48 @@
-namespace Viskleken.Migrations
+namespace LostInTranslation.Migrations
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
-    using Viskleken.Models;
+    using LostInTranslation.Models;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<Viskleken.Models.VisklekenContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<LostInTranslation.Models.LostInTranslationContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(Viskleken.Models.VisklekenContext context)
+        protected override void Seed(LostInTranslation.Models.LostInTranslationContext context)
         {
             context.Languages.AddOrUpdate(p => p.Id, new Language
             {
                 Id = 1,
-                Name = "1. Amhariska, javanesiska, gaeliska, kanaresiska, urdu"
+                Name = "1. Latin, Javanese, Scots Gaelic, Kannada, Urdu"
             });
 
             context.Languages.AddOrUpdate(p => p.Id, new Language
             {
                 Id = 2,
-                Name = "2. Hebreiska, chichewa, gujarati, hindi, maori"
+                Name = "2. Hebrew, Chichewa, Gujarati, Hindi, Maori"
             });
 
             context.Languages.AddOrUpdate(p => p.Id, new Language
             {
                 Id = 3,
-                Name = "3. Polska, hmong, xhosa, pashto, isländska"
+                Name = "3. Polish, Hmong, Xhosa, Pashto, Icelandic"
             });
 
             context.Languages.AddOrUpdate(p => p.Id, new Language
             {
                 Id = 4,
-                Name = "4. Swahili, igbo, frisiska, tadzjikiska, sindhi"
+                Name = "4. Swahili, Igbo, Frisian, Tajik, Sindhi"
             });
 
             context.Languages.AddOrUpdate(p => p.Id, new Language
             {
                 Id = 5,
-                Name = "5. Marathi, kirgiziska, tamil, esperanto, danska"
+                Name = "5. Marathi, Kyrgyz, Tamil, Esperanto, Danish"
             });
 
             context.SaveChanges();

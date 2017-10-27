@@ -1,4 +1,4 @@
-namespace Viskleken.Migrations
+namespace LostInTranslation.Migrations
 {
     using System;
     using System.Data.Entity.Migrations;

@@ -5,22 +5,22 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Viskleken.Viewmodels
+namespace LostInTranslation.Viewmodels
 {
     public class LanguageSelectorVM
     {
         public string Heading { get; set; }
 
-        [Display(Name="E-post")]
+        [Display(Name="Email")]
         public string Email { get; set; }
 
         [Required]
-        [Display(Name = "Fras")]
+        [Display(Name = "Phrase")]
         public string Phrase { get; set; }
 
         public int? SelectedLanguageId { get; set; }
 
-        [Display(Name = "Språk")]
+        [Display(Name = "Language")]
         public IEnumerable<SelectListItem> Language { get; set; }
 
         public string StartMessage { get; set; }
@@ -29,7 +29,7 @@ namespace Viskleken.Viewmodels
 
         public LanguageSelectorVM()
         {
-            StartMessage = "ViskROBOTEN startar";
+            StartMessage = "The WhisperROBOT is starting";
         }
     }
 }

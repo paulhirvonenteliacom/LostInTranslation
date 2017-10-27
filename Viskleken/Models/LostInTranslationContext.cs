@@ -4,9 +4,9 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
-namespace Viskleken.Models
+namespace LostInTranslation.Models
 {
-    public class VisklekenContext : DbContext
+    public class LostInTranslationContext : DbContext
     {
         // You can add custom code to this file. Changes will not be overwritten.
         // 
@@ -15,10 +15,10 @@ namespace Viskleken.Models
         // For more information refer to the documentation:
         // http://msdn.microsoft.com/en-us/data/jj591621.aspx
     
-        public VisklekenContext() : base("name=VisklekenContext")
+        public LostInTranslationContext() : base("name=LostInTranslationContext")
         {
         }
 
-        public System.Data.Entity.DbSet<Viskleken.Models.Language> Languages { get; set; }
+        public System.Data.Entity.DbSet<LostInTranslation.Models.Language> Languages { get; set; }
     }
 }
