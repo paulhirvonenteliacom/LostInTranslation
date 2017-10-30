@@ -63,42 +63,5 @@
 
             </div>
         </div>
-
-        @*ONLY NEEDED FOR PROGRESS BAR*@
-        @*<div class="row">
-                <div class="col col-md-offset-2 col-md-10">
-                    <div class="progress">
-                        <div class="progress-bar progress-bar-striped" role="progressbar" id="my-progress-bar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                </div>
-            </div>
-
-            <p class="hidden" id="progress-counter" value="">0</p>*@
-
     </div>
-
 }
-@*<script>
-        $(document).ready(function () {
-            //$("#start-message").fadeIn(5000);
-            //$("#start-message").delay(2000).fadeOut(5000);
-            updateProgress();
-        });
-
-
-        function updateProgress() {
-            var barelem = document.getElementById("my-progress-bar");
-            var counterelem = document.getElementById("progress-counter");
-            var counter = 0;
-            var id = setInterval(frame, 1000);
-            function frame() {
-                counter = counterelem.innerText;
-                if (counter == 110) {
-                    clearInterval(id);
-                }
-                else {
-                    barelem.style.width = counter + '%';
-                }
-            }
-        }
-    </script>*@

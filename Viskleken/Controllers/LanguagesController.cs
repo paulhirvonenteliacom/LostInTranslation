@@ -85,9 +85,9 @@ namespace LostInTranslation.Controllers
             {   
                 languageSelectorVM.StageInProcess = 2;
 
-                string builder = "";
-
-                System.IO.File.WriteAllText("C:\\Users\\paulh\\OneDrive\\Documents\\Bitoreq AB\\APL\\LostInTranslation\\File.txt", builder);
+                string path = Environment.ExpandEnvironmentVariables("%appdata%\\Bitoreq AB\\LostInTranslation");
+                System.IO.Directory.CreateDirectory(path);
+                System.IO.File.WriteAllText(path + "\\File.txt", "");
 
                 return View(languageSelectorVM);
             }
