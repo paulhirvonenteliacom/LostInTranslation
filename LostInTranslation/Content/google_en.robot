@@ -1,4 +1,5 @@
 ♥timeoutstep = 100
+♥notranslation = false
 ♥url = ‴https://translate.google.com/?hl=en&tab=wT#‴
 ie.open url ♥url
 keyboard ⋘WIN+UP⋙
@@ -40,12 +41,27 @@ keyboard ⋘CTRL+V⋙
 
 delay seconds 2
 
+ie.getattribute name ‴value‴ by ‴id‴ search ‴source‴ result source
+delay seconds 2
+ie.runscript script ‴document.getElementById("result_box").innerHTML‴ result resultbox
+♥resultbox = ⊂♥resultbox.Replace("<span>", "").Replace("</span>", "")⊃
+
+jump ➜cannottranslate if ⊂♥source == ♥resultbox⊃
+
 ie.click ‴gt-swap‴
 keyboard ‴ ‴⋘CTRL+A⋙⋘CTRL+C⋙⋘RIGHT⋙
 ♥finalphrase⟦♥iteration⟧ = ♥clipboard
 
 ♥iteration = ♥iteration + 1
 jump ➜languageloop if ⊂♥iteration < 7⊃
+
+jump ➜result
+
+➜cannottranslate
+♥notranslation = true
+♥finalphrase⟦6⟧ = ‴Google translate cannot translate the phrase‴
+
+➜result
 
 window title ‴✱Lost In Translation✱‴
 ie.attach phrase ‴Translation‴
@@ -54,6 +70,7 @@ ie.runscript script ‴$(result).css("visibility", "visible")‴
 
 ♥iteration = 1
 ♥emailbody = ⊂"Starting phrase:\t" + ♥phrase + "\n\n"⊃
+jump ➜shortemail if ⊂♥notranslation == true⊃
 ➜emailconstruction
 
 ♥emailbody = ⊂♥emailbody + ♥languages⟦♥iteration⟧ + ":\t" + ♥finalphrase⟦♥iteration⟧ + "\n"⊃
@@ -62,6 +79,13 @@ ie.runscript script ‴$(result).css("visibility", "visible")‴
 jump ➜emailconstruction if ⊂♥iteration < 6⊃
 
 ♥emailbody = ⊂♥emailbody + "\n" + ♥languages⟦♥iteration⟧ + ":\t" + ♥finalphrase⟦♥iteration⟧⊃
+
+jump ➜sendemail if ⊂♥notranslation == false⊃
+
+➜shortemail
+♥emailbody = ⊂♥emailbody + "Result:\t\t" + ♥finalphrase⟦6⟧⊃
+
+➜sendemail
 
 mail.smtp login ‴ourrobotdemo@gmail.com‴ password ‴DemoDagen‴ from ‴ourrobotdemo@gmail.com‴ to ♥email subject ‴Robot results‴ body ⊂♥emailbody⊃ errorjump ➜emaildone
 
